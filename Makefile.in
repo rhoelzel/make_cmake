@@ -1,5 +1,6 @@
 CC = gcc
 CPP = g++
+RANLIB = ar
 RELEASE = -c -O3 
 DEBUG = -c -g -D_DEBUG
 INCDIR = -I./stuff/include
@@ -15,7 +16,7 @@ debug: CFLAGS=$(DEBUG)
 debug: prog
 
 mystatlib: mystatlib.o
-	$(AR) rcs libmystatlib.a mystatlib.o
+	$(RANLIB) rcs libmystatlib.a mystatlib.o
 mydynlib: mydynlib.o
 	$(CPP) -shared mydynlib.o -o libmydynlib.so
 
