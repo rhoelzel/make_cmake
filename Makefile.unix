@@ -1,0 +1,25 @@
+CC = gcc
+CPP = g++
+RELEASE = -c -O3 
+DEBUG = -c -g -D_DEBUG
+INCDIR = -I./stuff/include
+LIBDIR = -L./stuff/lib -L.
+LIBS = -lstuff -lmystatlib -lmydynlib
+CFLAGS = $(RELEASE)
+
+PROGOBJS = prog1.o prog2.o prog3.o
+
+prog: main.o $(PROGOBJS) mystatlib mydynlib
+	$(CC) main.o $(PROGOBJS) $(LIBDIR) $(LIBS) -o prog 
+debug: CFLAGS=$(DEBUG)
+debug: prog
+
+mystatlib: mystatlib.o
+	$(AR) rcs libmystatlib.a mystatlib.o
+mydynlib: mydynlib.o
+	$(CPP) -shared mydynlib.o -o libmydynlib.so
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCDIR) $< -o $@ 
+%.o: %.cpp
+	$(CPP) $(CFLAGS) $(INCDIR) -fPIC  $< -o $@ 

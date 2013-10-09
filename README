@@ -1,0 +1,19 @@
+This example project creates an executable named prog from the source files main.c, prog1.c, prog2.c and prog3.c.
+prog is linked against libmystaticlib.a and libmydynlib.so which are also built from source, and against the external library libstuff.a in stuff/lib with a header in stuff/include. 
+The shared library libmydynlib.so is compiled with position independent code.
+
+build with make:
+   cd make_cmake 
+   make -f Makefile.unix    (or, for debugging: make debug -f Makefile.unix)
+
+build with cmake:
+   cd make_cmake
+   mkdir build
+   cd build
+   cmake ..		    (or, for debugging: cmake -DCMAKE_BUILD_TYPE:STRING=Debug)	   
+   make
+
+you can also use cmake directly in the source directory (although this is uncommon):
+   cd make_cmake
+   cmake .
+   make
