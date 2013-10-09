@@ -4,7 +4,7 @@ The shared library libmydynlib.so is compiled with position independent code.
 Before building the program, you need to rename the correct library in stuff/lib to libstuff.a!
 How to build with make:
    cd make_cmake 
-   make -f Makefile.unix    (or, for debugging: make debug -f Makefile.unix)
+   make -f Makefile.in    (or, for debugging: make debug -f Makefile.unix)
 
 How to build with cmake:
    cd make_cmake
